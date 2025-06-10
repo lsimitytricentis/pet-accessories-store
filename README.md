@@ -6,4 +6,9 @@ To run:
 
 You should then see the app is available on http://localhost:8080/
 
+Tests
+Unit tests are avaialble by running
+1. mvn test
+
+
 If you need to change the port it runs on, you can access src/main/resources/application.properties and change the server.port property, or pass through the command line (usual spring possibilities)

@@ -644,7 +644,7 @@
                         <h3 class="product-name">${product.name}</h3>
                         <p class="product-description">${product.description}</p>
                         <div class="product-price">${product.price}</div>
-                        <button class="add-to-cart-btn" onclick="event.stopPropagation(); addToCart(${product.id})">
+                        <button class="add-to-cart-btn" onclick="event.stopPropagation(); addToCart(${product.id})" id="${product.id}">
                             Add to Cart
                         </button>
                     </div>
