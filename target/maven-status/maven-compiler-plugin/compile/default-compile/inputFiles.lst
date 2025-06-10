@@ -1,8 +1,0 @@
-/home/lsimity/petstore/pet-accessories-store/src/main/java/com/petstore/service/ProductService.java
-/home/lsimity/petstore/pet-accessories-store/src/main/java/com/petstore/repository/ProductRepository.java
-/home/lsimity/petstore/pet-accessories-store/src/main/java/com/petstore/controller/ProductController.java
-/home/lsimity/petstore/pet-accessories-store/src/main/java/com/petstore/controller/WebController.java
-/home/lsimity/petstore/pet-accessories-store/src/main/java/com/petstore/config/DataInitializer.java
-/home/lsimity/petstore/pet-accessories-store/src/main/java/com/petstore/model/Product.java
-/home/lsimity/petstore/pet-accessories-store/src/main/java/com/petstore/model/CartItem.java
-/home/lsimity/petstore/pet-accessories-store/src/main/java/com/petstore/PetAccessoriesStoreApplication.java
