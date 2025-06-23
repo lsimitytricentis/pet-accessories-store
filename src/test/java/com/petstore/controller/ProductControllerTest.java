@@ -41,7 +41,7 @@ class ProductControllerTest {
     void setUp() {
         testProduct1 = new Product("Dog Toy", "Fun toy for dogs", 
             new BigDecimal("15.99"), "http://example.com/dog-toy.jpg", 
-            Product.Category.TOYS, 10);
+            Product.Category.TOYS, 25);
         testProduct1.setId(1L);
 
         testProduct2 = new Product("Cat Food", "Premium cat food", 

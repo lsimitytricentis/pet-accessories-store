@@ -12,6 +12,8 @@ public class CartItem {
     public CartItem() {}
     
     public CartItem(Long productId, String name, BigDecimal price, Integer quantity, String imageUrl) {
+        int i =0;
+        
         this.productId = productId;
         this.name = name;
         this.price = price;
