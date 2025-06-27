@@ -1,0 +1,7 @@
+com/petstore/service/ProductServiceTest.class
+com/petstore/controller/ProductControllerTest.class
+com/petstore/PetAccessoriesStoreApplicationTests.class
+com/petstore/model/CartItemTest.class
+com/petstore/integration/PetStoreIntegrationTest.class
+com/petstore/repository/ProductRepositoryTest.class
+com/petstore/model/ProductTest.class

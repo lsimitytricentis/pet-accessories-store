@@ -1,0 +1,72 @@
+# Created at 2025-06-26T11:26:42.813
+Corrupted channel by directly writing to native stream in forked JVM 1. Stream '[SeaLights Test Listener] [8e] - Application run command: '/home/tosca/pet-accessories-store/target/surefire/surefirebooter-20250626112641746_3.jar /home/tosca/pet-accessories-store/target/surefire 2025-06-26T11-26-41_545-jvmRun1 surefire-20250626112641746_1tmp surefire_0-20250626112641746_2tmp''.
+
+# Created at 2025-06-26T11:26:42.870
+Corrupted channel by directly writing to native stream in forked JVM 1. Stream '[SeaLights Test Listener] [8e] - [premain] SeaLights Test Listener was invoked. agentID: '8e8428ab-d13e-4579-a64e-904e816221a5', version:'4.0.2630''.
+
+# Created at 2025-06-26T11:26:42.878
+Corrupted channel by directly writing to native stream in forked JVM 1. Stream '[SeaLights Test Listener] [8e] - SLSettings: Trying to resolve configuration from file sealights-configuration.json, default file location: /home/tosca/pet-accessories-store'.
+
+# Created at 2025-06-26T11:26:42.888
+Corrupted channel by directly writing to native stream in forked JVM 1. Stream '[SeaLights Test Listener] [8e] - [Setting SL properties from agent options ...'.
+
+# Created at 2025-06-26T11:26:42.892
+Corrupted channel by directly writing to native stream in forked JVM 1. Stream '[SeaLights Test Listener] [8e] - ... Setting SL properties from agent options]'.
+
+# Created at 2025-06-26T11:26:42.897
+Corrupted channel by directly writing to native stream in forked JVM 1. Stream '[SeaLights Test Listener] [8e] - Application run command: '/home/tosca/pet-accessories-store/target/surefire/surefirebooter-20250626112641746_3.jar /home/tosca/pet-accessories-store/target/surefire 2025-06-26T11-26-41_545-jvmRun1 surefire-20250626112641746_1tmp surefire_0-20250626112641746_2tmp''.
+
+# Created at 2025-06-26T11:26:43.088
+Corrupted channel by directly writing to native stream in forked JVM 1. Stream '[SeaLights Test Listener] [8e] - Application run command: '/home/tosca/pet-accessories-store/target/surefire/surefirebooter-20250626112641746_3.jar /home/tosca/pet-accessories-store/target/surefire 2025-06-26T11-26-41_545-jvmRun1 surefire-20250626112641746_1tmp surefire_0-20250626112641746_2tmp''.
+
+# Created at 2025-06-26T11:26:44.443
+Corrupted channel by directly writing to native stream in forked JVM 1. Stream '[SeaLights Test Listener] [8e] - [Init token ...'.
+
+# Created at 2025-06-26T11:26:44.455
+Corrupted channel by directly writing to native stream in forked JVM 1. Stream '[SeaLights Test Listener] [8e] - ... Init token]'.
+
+# Created at 2025-06-26T11:26:44.456
+Corrupted channel by directly writing to native stream in forked JVM 1. Stream '[SeaLights Test Listener] [8e] - [Resolve buildSessionId ...'.
+
+# Created at 2025-06-26T11:26:44.460
+Corrupted channel by directly writing to native stream in forked JVM 1. Stream '[SeaLights Test Listener] [8e] - Using buildSessionId from system property'.
+
+# Created at 2025-06-26T11:26:44.460
+Corrupted channel by directly writing to native stream in forked JVM 1. Stream '[SeaLights Test Listener] [8e] - ... Resolve buildSessionId]'.
+
+# Created at 2025-06-26T11:26:44.490
+Corrupted channel by directly writing to native stream in forked JVM 1. Stream '[SeaLights Test Listener] [8e] - using fileStorage='/tmp' from configuration'.
+
+# Created at 2025-06-26T11:26:44.494
+Corrupted channel by directly writing to native stream in forked JVM 1. Stream '[SeaLights Test Listener] [8e] - archive:'java-test-listener-core', artifact:'java-test-listener-core' automatic upgrade is disabled'.
+
+# Created at 2025-06-26T11:26:44.765
+Corrupted channel by directly writing to native stream in forked JVM 1. Stream '[SeaLights Test Listener] [8e] - Using embedded jar 'java-agent-core-4.0.2630', version '4.0.2630''.
+
+# Created at 2025-06-26T11:26:44.783
+Corrupted channel by directly writing to native stream in forked JVM 1. Stream '[SeaLights Test Listener] [8e] - Appending to bootstrap class loader '/tmp/java-agent-core-4.0.2630_89c4757c-f161-49e0-b1bf-e28dd1731014.jar', jdk.internal.loader.ClassLoaders$AppClassLoader@76ed5528'.
+
+# Created at 2025-06-26T11:26:44.795
+Corrupted channel by directly writing to native stream in forked JVM 1. Stream '[SeaLights Test Listener] [8e] - Application run command: '/home/tosca/pet-accessories-store/target/surefire/surefirebooter-20250626112641746_3.jar /home/tosca/pet-accessories-store/target/surefire 2025-06-26T11-26-41_545-jvmRun1 surefire-20250626112641746_1tmp surefire_0-20250626112641746_2tmp''.
+
+# Created at 2025-06-26T11:26:44.889
+Corrupted channel by directly writing to native stream in forked JVM 1. Stream '[SeaLights Test Listener] [8e] - invokeCoreAgent classLoaderToUse jdk.internal.loader.ClassLoaders$AppClassLoader@76ed5528'.
+
+# Created at 2025-06-26T11:26:46.701
+Corrupted channel by directly writing to native stream in forked JVM 1. Stream '11:26:44,882 |-WARN in Logger[ROOT] - No appenders present in context [default] for logger [ROOT].'.
+
+# Created at 2025-06-26T11:26:48.038
+Corrupted channel by directly writing to native stream in forked JVM 1. Stream '[Sealights Test Listener] [54] - [premain] SeaLights Test Listener is running. agentID: '543139b3-6a82-409d-9fc6-a136ac61a627', version:'4.0.2630''.
+
+# Created at 2025-06-26T11:26:48.042
+Corrupted channel by directly writing to native stream in forked JVM 1. Stream '[SeaLights Test Listener] [8e] - Application run command: '/home/tosca/pet-accessories-store/target/surefire/surefirebooter-20250626112641746_3.jar /home/tosca/pet-accessories-store/target/surefire 2025-06-26T11-26-41_545-jvmRun1 surefire-20250626112641746_1tmp surefire_0-20250626112641746_2tmp''.
+
+# Created at 2025-06-26T11:26:48.046
+Corrupted channel by directly writing to native stream in forked JVM 1. Stream '[SeaLights Test Listener] [8e] - Trying to load otel configuration'.
+
+# Created at 2025-06-26T11:26:50.324
+Corrupted channel by directly writing to native stream in forked JVM 1. Stream '[SeaLights Test Listener] [8e] - opentelemetry loading disabled'.
+
+# Created at 2025-06-26T11:27:17.816
+Corrupted channel by directly writing to native stream in forked JVM 1. Stream '[Sealights Test Listener] [54] - Done.'.
+

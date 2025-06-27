@@ -616,7 +616,51 @@
         let cart = [];
         let currentStep = 1;
         let shippingCost = 0;
+/**
+ * Makes an asynchronous GET request to a specified URL and returns the data.
+ * This example uses the modern `fetch` API with `async/await` for clean, readable code.
+ *
+ * @param {string} url The URL to which the request will be made.
+ * @returns {Promise<any>} A Promise that resolves with the parsed data (JSON or text),
+ * or rejects with an error if the request fails.
+ */
+async function loadDataFromUrl(url) {
+    try {
+        // 1. Make the request using `fetch`.
+        // `fetch` returns a Promise that resolves to the Response object.
+        // The `await` keyword pauses the execution of this function until the Promise settles.
+        const response = await fetch(url);
 
+        // 2. Check if the request was successful (status code 200-299).
+        // `response.ok` is a convenient property that is true if the status is in this range.
+        if (!response.ok) {
+            // If the response was not OK, throw an error to be caught by the catch block.
+            // We include the status and statusText for better debugging.
+            throw new Error(`HTTP error! Status: ${response.status} ${response.statusText}`);
+        }
+
+        // 3. Parse the response body.
+        // The Response object provides various methods to parse the body:
+        // - `response.json()`: If the server returns JSON data.
+        // - `response.text()`: If the server returns plain text.
+        // - `response.blob()`: For binary data like images.
+        // - `response.arrayBuffer()`: For raw binary data.
+        // - `response.formData()`: If the response is FormData.
+
+        // This example assumes the data is JSON. If it's plain text, use `response.text()`.
+        const data = await response.json(); // Or await response.text();
+
+        // 4. Return the parsed data.
+        return data;
+
+    } catch (error) {
+        // 5. Handle any errors that occurred during the fetch operation.
+        // This could be network errors, DNS errors, or the custom error thrown above.
+        console.error('There was a problem with the fetch operation:', error);
+        // Re-throw the error or return a specific value, depending on your application's needs.
+        throw error;
+    }
+}
         // Fetch products from API
         async function fetchProducts() {
             try {
@@ -629,9 +673,12 @@
         }
 
         // Display products
-        function displayProducts(productsToShow) {
+        async function displayProducts(productsToShow) {
             const grid = document.getElementById('productsGrid');
-            
+        
+
+                console.log("displayProducts");
+
             if (productsToShow.length === 0) {
                 grid.innerHTML = '<div class="loading">No products found</div>';
                 return;
@@ -644,7 +691,7 @@
                         <h3 class="product-name">${product.name}</h3>
                         <p class="product-description">${product.description}</p>
                         <div class="product-price">${product.price}</div>
-                        <button class="add-to-cart-btn" onclick="event.stopPropagation(); addToCart(${product.id})">
+                        <button class="add-to-cart-btn" onclick="event.stopPropagation(); addToCart(${product.id})" id="${product.id}">
                             Add to Cart
                         </button>
                     </div>
@@ -653,8 +700,16 @@
         }
 
         // Add to cart
-        function addToCart(productId) {
+        async function addToCart(productId) {
             const product = products.find(p => p.id === productId);
+            console.log("Adding products to car and printing its category" + product.category);
+            const jsonUrl = ('api/products/category/' + product.category);
+                    loadDataFromUrl(jsonUrl)
+                        .then(data => {
+                        console.log('Just made the API call to the server and successfully loaded JSON data:');
+                        console.log(data);
+                    })
+            
             if (!product) return;
 
             const existingItem = cart.find(item => item.productId === productId);
@@ -888,6 +943,7 @@
                     displayProducts(products);
                 } else {
                     const filtered = products.filter(p => p.category === category);
+                    
                     displayProducts(filtered);
                 }
             });

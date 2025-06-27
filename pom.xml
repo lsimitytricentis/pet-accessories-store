@@ -1,47 +1,199 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+            
+    
     <modelVersion>4.0.0</modelVersion>
+            
+    
     <parent>
+                        
+        
         <groupId>org.springframework.boot</groupId>
+                        
+        
         <artifactId>spring-boot-starter-parent</artifactId>
+                        
+        
         <version>3.1.5</version>
+                        
+        
         <relativePath/>
+                    
+    
     </parent>
+            
+    
     <groupId>com.petstore</groupId>
+            
+    
     <artifactId>pet-accessories-store</artifactId>
+            
+    
     <version>0.0.1-SNAPSHOT</version>
+            
+    
     <name>pet-accessories-store</name>
+            
+    
     <description>Pet Accessories Store Application</description>
+            
+    
     <properties>
+                        
+        
         <java.version>17</java.version>
+                    
+    
     </properties>
+            
+    
     <dependencies>
+                        
+        
         <dependency>
+                                    
+            
             <groupId>org.springframework.boot</groupId>
+                                    
+            
             <artifactId>spring-boot-starter-web</artifactId>
+                                
+        
         </dependency>
+                        
+        
         <dependency>
+                                    
+            
             <groupId>org.springframework.boot</groupId>
+                                    
+            
             <artifactId>spring-boot-starter-data-jpa</artifactId>
+                                
+        
         </dependency>
+                        
+        
         <dependency>
+                                    
+            
             <groupId>com.h2database</groupId>
+                                    
+            
             <artifactId>h2</artifactId>
+                                    
+            
             <scope>runtime</scope>
+                                
+        
         </dependency>
+                        
+        
         <dependency>
+                                    
+            
             <groupId>org.springframework.boot</groupId>
+                                    
+            
             <artifactId>spring-boot-starter-test</artifactId>
+                                    
+            
             <scope>test</scope>
+                                
+        
         </dependency>
+                    
+    
     </dependencies>
+            
+    
     <build>
+                        
+        
         <plugins>
+                                    
+            
             <plugin>
+                                                
+                
                 <groupId>org.springframework.boot</groupId>
+                                                
+                
                 <artifactId>spring-boot-maven-plugin</artifactId>
+                                            
+            
             </plugin>
+                                    
+                               
+        
+            
+            <plugin>
+                                
+                <groupId>io.sealights.on-premise.agents.plugin</groupId>
+                                
+                <artifactId>sealights-maven-plugin</artifactId>
+                                
+                <version>4.0.1125</version>
+                                
+                <configuration>
+                                        
+                    <tokenFile>sltoken.txt</tokenFile>
+                                        
+                    <buildSessionIdFile>buildSessionId.txt</buildSessionIdFile>
+                                        
+                    <createBuildSessionId>false</createBuildSessionId>
+                                        
+                    <testStage>System Test - Automated</testStage>
+                                        
+                    <runFunctionalTests>true</runFunctionalTests>
+                                        
+                    <logEnabled>false</logEnabled>
+                                        
+                    <logLevel>WARN</logLevel>
+                                        
+                    <logToConsole>true</logToConsole>
+                                        
+                    <logFolder>/tmp</logFolder>
+                                        
+                    <includeResources>true</includeResources>
+                                    
+                </configuration>
+                                
+                <executions>
+                                        
+                    <execution>
+                                                
+                        <id>a2</id>
+                                                
+                        <goals>
+                                                        
+                            <goal>test-listener</goal>
+                                                    
+                        </goals>
+                                            
+                    </execution>
+                                        
+                    <execution>
+                                                
+                        <id>a3</id>
+                                                
+                        <goals>
+                                                        
+                            <goal>prepare-test-listener</goal>
+                                                    
+                        </goals>
+                                            
+                    </execution>
+                                    
+                </executions>
+                            
+            </plugin>
+                    
+        
         </plugins>
+                    
+    
     </build>
+        
+
 </project>

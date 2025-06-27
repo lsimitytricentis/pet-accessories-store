@@ -1,0 +1,702 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SeaLights Test Recommendations</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/material-design-icons/4.0.0/iconfont/material-icons.min.css" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Roboto', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+
+        .container {
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+            padding: 32px;
+            width: 100%;
+            max-width: 600px;
+            backdrop-filter: blur(10px);
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 32px;
+        }
+
+        .header h1 {
+            color: #1976d2;
+            font-size: 28px;
+            font-weight: 500;
+            margin-bottom: 8px;
+        }
+
+        .header p {
+            color: #666;
+            font-size: 16px;
+        }
+
+        .form-group {
+            margin-bottom: 24px;
+        }
+
+        .form-row {
+            display: flex;
+            gap: 16px;
+            margin-bottom: 24px;
+        }
+
+        .form-row .form-group {
+            flex: 1;
+            margin-bottom: 0;
+        }
+
+        label {
+            display: block;
+            color: #333;
+            font-weight: 500;
+            margin-bottom: 8px;
+            font-size: 14px;
+        }
+
+        input, select {
+            width: 100%;
+            padding: 12px 16px;
+            border: 2px solid #e0e0e0;
+            border-radius: 8px;
+            font-size: 16px;
+            transition: all 0.3s ease;
+            background: white;
+        }
+
+        input:focus, select:focus {
+            outline: none;
+            border-color: #1976d2;
+            box-shadow: 0 0 0 3px rgba(25, 118, 210, 0.1);
+        }
+
+        input:hover, select:hover {
+            border-color: #bbb;
+        }
+
+        .btn {
+            background: #1976d2;
+            color: white;
+            border: none;
+            padding: 12px 24px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 16px;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            min-height: 48px;
+        }
+
+        .btn:hover {
+            background: #1565c0;
+            transform: translateY(-1px);
+            box-shadow: 0 4px 12px rgba(25, 118, 210, 0.3);
+        }
+
+        .btn:disabled {
+            background: #ccc;
+            cursor: not-allowed;
+            transform: none;
+            box-shadow: none;
+        }
+
+        .btn-secondary {
+            background: #f5f5f5;
+            color: #333;
+            border: 2px solid #e0e0e0;
+        }
+
+        .btn-secondary:hover {
+            background: #eeeeee;
+            border-color: #bbb;
+        }
+
+        .btn-full {
+            width: 100%;
+            justify-content: center;
+        }
+
+        .loading {
+            display: inline-block;
+            width: 20px;
+            height: 20px;
+            border: 2px solid #ffffff;
+            border-radius: 50%;
+            border-top-color: transparent;
+            animation: spin 1s ease-in-out infinite;
+        }
+
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+
+        .error {
+            background: #ffebee;
+            color: #c62828;
+            padding: 12px 16px;
+            border-radius: 8px;
+            margin-bottom: 16px;
+            border: 1px solid #ffcdd2;
+        }
+
+        .success {
+            background: #e8f5e8;
+            color: #2e7d32;
+            padding: 12px 16px;
+            border-radius: 8px;
+            margin-bottom: 16px;
+            border: 1px solid #c8e6c9;
+        }
+
+        .step {
+            display: none;
+        }
+
+        .step.active {
+            display: block;
+        }
+
+        .step-indicator {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 32px;
+        }
+
+        .step-item {
+            display: flex;
+            align-items: center;
+            color: #ccc;
+            font-size: 14px;
+            font-weight: 500;
+        }
+
+        .step-item.active {
+            color: #1976d2;
+        }
+
+        .step-item.completed {
+            color: #4caf50;
+        }
+
+        .step-number {
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            background: #e0e0e0;
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 8px;
+            font-weight: bold;
+        }
+
+        .step-item.active .step-number {
+            background: #1976d2;
+        }
+
+        .step-item.completed .step-number {
+            background: #4caf50;
+        }
+
+        .step-connector {
+            width: 60px;
+            height: 2px;
+            background: #e0e0e0;
+            margin: 0 16px;
+        }
+
+        .step-item.completed + .step-item .step-connector {
+            background: #4caf50;
+        }
+
+        .results {
+            margin-top: 24px;
+            padding: 16px;
+            border: 2px solid #e0e0e0;
+            border-radius: 8px;
+            background: #fafafa;
+        }
+
+        .results h3 {
+            color: #333;
+            margin-bottom: 16px;
+            font-size: 18px;
+        }
+
+        .test-item {
+            background: white;
+            padding: 12px;
+            margin-bottom: 8px;
+            border-radius: 6px;
+            border-left: 4px solid #1976d2;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        .test-item:last-child {
+            margin-bottom: 0;
+        }
+
+        .test-name {
+            font-weight: 500;
+            color: #333;
+            margin-bottom: 4px;
+        }
+
+        .test-details {
+            font-size: 14px;
+            color: #666;
+        }
+
+        .form-actions {
+            display: flex;
+            gap: 12px;
+            justify-content: flex-end;
+            margin-top: 24px;
+        }
+
+        @media (max-width: 480px) {
+            .form-row {
+                flex-direction: column;
+            }
+            
+            .form-actions {
+                flex-direction: column;
+            }
+            
+            .container {
+                padding: 24px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>SeaLights Test Recommendations</h1>
+            <p>Get recommended tests for your application builds</p>
+        </div>
+
+        <div class="step-indicator">
+            <div class="step-item active" id="step-indicator-1">
+                <div class="step-number">1</div>
+                <span>Authentication</span>
+            </div>
+            <div class="step-connector"></div>
+            <div class="step-item" id="step-indicator-2">
+                <div class="step-number">2</div>
+                <span>Select App & Branch</span>
+            </div>
+            <div class="step-connector"></div>
+            <div class="step-item" id="step-indicator-3">
+                <div class="step-number">3</div>
+                <span>Results</span>
+            </div>
+        </div>
+
+        <div id="error-message"></div>
+        <div id="success-message"></div>
+
+        <!-- Step 1: Authentication -->
+        <div class="step active" id="step1">
+            <form id="authForm">
+                <div class="form-group">
+                    <label for="apiUrl">SeaLights API URL</label>
+                    <input type="url" id="apiUrl" placeholder="https://your-sealights-instance.com/api" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="apiToken">API Token</label>
+                    <input type="password" id="apiToken" placeholder="Enter your API token" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="agentToken">Agent Token</label>
+                    <input type="password" id="agentToken" placeholder="Enter your agent token" required>
+                </div>
+                
+                <div class="form-actions">
+                    <button type="submit" class="btn btn-full" id="connectBtn">
+                        <span class="btn-text">Connect & Load Apps</span>
+                        <div class="loading" style="display: none;"></div>
+                    </button>
+                </div>
+            </form>
+        </div>
+
+        <!-- Step 2: Select App and Branch -->
+        <div class="step" id="step2">
+            <form id="selectionForm">
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="appSelect">Application</label>
+                        <select id="appSelect" required>
+                            <option value="">Select an application...</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="branchSelect">Branch</label>
+                        <select id="branchSelect" required>
+                            <option value="">Select a branch...</option>
+                        </select>
+                    </div>
+                </div>
+                
+                <div class="form-actions">
+                    <button type="button" class="btn btn-secondary" id="backBtn">
+                        <i class="material-icons">arrow_back</i>
+                        Back
+                    </button>
+                    <button type="submit" class="btn" id="submitBtn">
+                        <span class="btn-text">Get Recommendations</span>
+                        <div class="loading" style="display: none;"></div>
+                    </button>
+                </div>
+            </form>
+        </div>
+
+        <!-- Step 3: Results -->
+        <div class="step" id="step3">
+            <div class="results" id="results">
+                <!-- Results will be populated here -->
+            </div>
+            
+            <div class="form-actions">
+                <button type="button" class="btn btn-secondary" id="newSearchBtn">
+                    <i class="material-icons">refresh</i>
+                    New Search
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        class SeaLightsApp {
+            constructor() {
+                this.currentStep = 1;
+                this.apiConfig = {};
+                this.apps = [];
+                this.branches = [];
+                
+                this.initializeEventListeners();
+            }
+
+            initializeEventListeners() {
+                document.getElementById('authForm').addEventListener('submit', (e) => this.handleAuth(e));
+                document.getElementById('selectionForm').addEventListener('submit', (e) => this.handleSubmit(e));
+                document.getElementById('backBtn').addEventListener('click', () => this.goToStep(1));
+                document.getElementById('newSearchBtn').addEventListener('click', () => this.reset());
+                document.getElementById('appSelect').addEventListener('change', (e) => this.loadBranches(e.target.value));
+            }
+
+            async handleAuth(e) {
+                e.preventDefault();
+                
+                const connectBtn = document.getElementById('connectBtn');
+                const btnText = connectBtn.querySelector('.btn-text');
+                const loading = connectBtn.querySelector('.loading');
+                
+                btnText.style.display = 'none';
+                loading.style.display = 'inline-block';
+                connectBtn.disabled = true;
+
+                try {
+                    this.apiConfig = {
+                        url: document.getElementById('apiUrl').value.trim(),
+                        apiToken: document.getElementById('apiToken').value.trim(),
+                        agentToken: document.getElementById('agentToken').value.trim()
+                    };
+
+                    // Simulate API authentication and app loading
+                    await this.loadApps();
+                    
+                    this.showSuccess('Connected successfully! Please select an application and branch.');
+                    this.goToStep(2);
+                    
+                } catch (error) {
+                    this.showError(`Authentication failed: ${error.message}`);
+                } finally {
+                    btnText.style.display = 'inline';
+                    loading.style.display = 'none';
+                    connectBtn.disabled = false;
+                }
+            }
+
+            async loadApps() {
+                // Simulate API call to get applications
+                try {
+                    // In a real implementation, this would be:
+                    const response = await fetch(`${this.apiConfig.url}/sl-api/v1/apps`, {
+                         headers: {
+                             'Authorization': `Bearer ${this.apiConfig.apiToken}`,
+                             'X-Agent-Token': this.apiConfig.agentToken,
+                             'Content-Type': 'application/json'
+                         }
+                     });
+                    
+                    
+                    this.apps = response.apps
+                    
+                    this.populateAppSelect();
+                    
+                } catch (error) {
+                    throw new Error('Failed to load applications. Please check your credentials and API URL.');
+                }
+            }
+
+            populateAppSelect() {
+                const appSelect = document.getElementById('appSelect');
+                appSelect.innerHTML = '<option value="">Select an application...</option>';
+                
+                this.apps.forEach(app => {
+                    const option = document.createElement('option');
+                    option.value = app.id;
+                    option.textContent = `${app.name} (${app.type})`;
+                    appSelect.appendChild(option);
+                });
+            }
+
+            async loadBranches(appId) {
+                if (!appId) {
+                    document.getElementById('branchSelect').innerHTML = '<option value="">Select a branch...</option>';
+                    return;
+                }
+
+                try {
+                    // Simulate API call to get branches for the selected app
+                    await new Promise(resolve => setTimeout(resolve, 800));
+                    
+                    this.branches = [
+                        { id: 'main', name: 'main', lastBuild: '2024-06-13T10:30:00Z' },
+                        { id: 'develop', name: 'develop', lastBuild: '2024-06-13T09:15:00Z' },
+                        { id: 'feature-auth', name: 'feature/authentication', lastBuild: '2024-06-12T16:45:00Z' },
+                        { id: 'release-v2.1', name: 'release/v2.1', lastBuild: '2024-06-11T14:20:00Z' }
+                    ];
+                    
+                    this.populateBranchSelect();
+                    
+                } catch (error) {
+                    this.showError('Failed to load branches for the selected application.');
+                }
+            }
+
+            populateBranchSelect() {
+                const branchSelect = document.getElementById('branchSelect');
+                branchSelect.innerHTML = '<option value="">Select a branch...</option>';
+                
+                this.branches.forEach(branch => {
+                    const option = document.createElement('option');
+                    option.value = branch.id;
+                    const lastBuildDate = new Date(branch.lastBuild).toLocaleDateString();
+                    option.textContent = `${branch.name} (Last build: ${lastBuildDate})`;
+                    branchSelect.appendChild(option);
+                });
+            }
+
+            async handleSubmit(e) {
+                e.preventDefault();
+                
+                const submitBtn = document.getElementById('submitBtn');
+                const btnText = submitBtn.querySelector('.btn-text');
+                const loading = submitBtn.querySelector('.loading');
+                
+                btnText.style.display = 'none';
+                loading.style.display = 'inline-block';
+                submitBtn.disabled = true;
+
+                try {
+                    const appId = document.getElementById('appSelect').value;
+                    const branchId = document.getElementById('branchSelect').value;
+                    
+                    if (!appId || !branchId) {
+                        throw new Error('Please select both an application and a branch.');
+                    }
+
+                    const recommendations = await this.getRecommendations(appId, branchId);
+                    this.displayResults(recommendations);
+                    this.goToStep(3);
+                    
+                } catch (error) {
+                    this.showError(`Failed to get recommendations: ${error.message}`);
+                } finally {
+                    btnText.style.display = 'inline';
+                    loading.style.display = 'none';
+                    submitBtn.disabled = false;
+                }
+            }
+
+            async getRecommendations(appId, branchId) {
+                // Simulate API call to get test recommendations
+                try {
+                    // In a real implementation, this would be:
+                    // const response = await fetch(`${this.apiConfig.url}/test-recommendations`, {
+                    //     method: 'POST',
+                    //     headers: {
+                    //         'Authorization': `Bearer ${this.apiConfig.apiToken}`,
+                    //         'X-Agent-Token': this.apiConfig.agentToken,
+                    //         'Content-Type': 'application/json'
+                    //     },
+                    //     body: JSON.stringify({
+                    //         appId: appId,
+                    //         branchId: branchId,
+                    //         buildType: 'latest'
+                    //     })
+                    // });
+                    
+                    await new Promise(resolve => setTimeout(resolve, 2000));
+                    
+                    const selectedApp = this.apps.find(app => app.id === appId);
+                    const selectedBranch = this.branches.find(branch => branch.id === branchId);
+                    
+                    return {
+                        appName: selectedApp.name,
+                        branchName: selectedBranch.name,
+                        buildId: 'build-' + Date.now(),
+                        recommendedTests: [
+                            {
+                                name: 'UserAuthenticationTest',
+                                suite: 'Authentication',
+                                priority: 'High',
+                                estimatedDuration: '2m 30s',
+                                reason: 'Authentication module modified'
+                            },
+                            {
+                                name: 'UserRegistrationTest',
+                                suite: 'Authentication', 
+                                priority: 'High',
+                                estimatedDuration: '1m 45s',
+                                reason: 'Related to authentication changes'
+                            },
+                            {
+                                name: 'ProfileUpdateTest',
+                                suite: 'User Management',
+                                priority: 'Medium',
+                                estimatedDuration: '3m 15s',
+                                reason: 'User service dependencies'
+                            },
+                            {
+                                name: 'DatabaseConnectionTest',
+                                suite: 'Infrastructure',
+                                priority: 'Low',
+                                estimatedDuration: '45s',
+                                reason: 'Shared database utilities'
+                            }
+                        ],
+                        totalTests: 4,
+                        estimatedTotalDuration: '8m 15s'
+                    };
+                    
+                } catch (error) {
+                    throw new Error('API request failed. Please check your network connection and try again.');
+                }
+            }
+
+            displayResults(data) {
+                const resultsContainer = document.getElementById('results');
+                
+                resultsContainer.innerHTML = `
+                    <h3>Recommended Tests for ${data.appName} - ${data.branchName}</h3>
+                    <div class="test-details" style="margin-bottom: 20px; padding: 12px; background: #e3f2fd; border-radius: 6px;">
+                        <strong>Build ID:</strong> ${data.buildId}<br>
+                        <strong>Total Tests:</strong> ${data.totalTests}<br>
+                        <strong>Estimated Duration:</strong> ${data.estimatedTotalDuration}
+                    </div>
+                    ${data.recommendedTests.map(test => `
+                        <div class="test-item">
+                            <div class="test-name">${test.name}</div>
+                            <div class="test-details">
+                                <strong>Suite:</strong> ${test.suite} | 
+                                <strong>Priority:</strong> ${test.priority} | 
+                                <strong>Duration:</strong> ${test.estimatedDuration}<br>
+                                <strong>Reason:</strong> ${test.reason}
+                            </div>
+                        </div>
+                    `).join('')}
+                `;
+            }
+
+            goToStep(stepNumber) {
+                // Hide all steps
+                document.querySelectorAll('.step').forEach(step => {
+                    step.classList.remove('active');
+                });
+                
+                // Show target step
+                document.getElementById(`step${stepNumber}`).classList.add('active');
+                
+                // Update step indicators
+                document.querySelectorAll('.step-item').forEach((item, index) => {
+                    item.classList.remove('active', 'completed');
+                    if (index + 1 === stepNumber) {
+                        item.classList.add('active');
+                    } else if (index + 1 < stepNumber) {
+                        item.classList.add('completed');
+                    }
+                });
+                
+                this.currentStep = stepNumber;
+                this.clearMessages();
+            }
+
+            reset() {
+                this.apiConfig = {};
+                this.apps = [];
+                this.branches = [];
+                
+                // Reset form fields
+                document.getElementById('authForm').reset();
+                document.getElementById('selectionForm').reset();
+                document.getElementById('appSelect').innerHTML = '<option value="">Select an application...</option>';
+                document.getElementById('branchSelect').innerHTML = '<option value="">Select a branch...</option>';
+                
+                this.goToStep(1);
+            }
+
+            showError(message) {
+                this.clearMessages();
+                const errorDiv = document.getElementById('error-message');
+                errorDiv.innerHTML = `<div class="error">${message}</div>`;
+                errorDiv.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+            }
+
+            showSuccess(message) {
+                this.clearMessages();
+                const successDiv = document.getElementById('success-message');
+                successDiv.innerHTML = `<div class="success">${message}</div>`;
+            }
+
+            clearMessages() {
+                document.getElementById('error-message').innerHTML = '';
+                document.getElementById('success-message').innerHTML = '';
+            }
+        }
+
+        // Initialize the application when the page loads
+        document.addEventListener('DOMContentLoaded', () => {
+            new SeaLightsApp();
+        });
+    </script>
+</body>
+</html>

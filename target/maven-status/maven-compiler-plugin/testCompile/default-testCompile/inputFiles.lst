@@ -1,0 +1,7 @@
+/home/tosca/pet-accessories-store/src/test/java/com/petstore/model/ProductTest.java
+/home/tosca/pet-accessories-store/src/test/java/com/petstore/repository/ProductRepositoryTest.java
+/home/tosca/pet-accessories-store/src/test/java/com/petstore/PetAccessoriesStoreApplicationTests.java
+/home/tosca/pet-accessories-store/src/test/java/com/petstore/service/ProductServiceTest.java
+/home/tosca/pet-accessories-store/src/test/java/com/petstore/model/CartItemTest.java
+/home/tosca/pet-accessories-store/src/test/java/com/petstore/integration/PetStoreIntegrationTest.java
+/home/tosca/pet-accessories-store/src/test/java/com/petstore/controller/ProductControllerTest.java

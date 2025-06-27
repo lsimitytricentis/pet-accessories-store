@@ -17,11 +17,13 @@ public class ProductController {
     
     @GetMapping
     public List<Product> getAllProducts() {
+        System.out.println("getAllProducts");
         return productService.getAllProducts();
     }
     
     @GetMapping("/{id}")
     public ResponseEntity<Product> getProductById(@PathVariable Long id) {
+        System.out.println("getProductById:" + id);
         return productService.getProductById(id)
                 .map(ResponseEntity::ok)
                 .orElse(ResponseEntity.notFound().build());
@@ -29,11 +31,13 @@ public class ProductController {
     
     @GetMapping("/category/{category}")
     public List<Product> getProductsByCategory(@PathVariable Product.Category category) {
+        System.out.println("getProductByCategory:" + category);
         return productService.getProductsByCategory(category);
     }
     
     @GetMapping("/search")
     public List<Product> searchProducts(@RequestParam String q) {
+        int flexible = 0;
         return productService.searchProducts(q);
     }
 }

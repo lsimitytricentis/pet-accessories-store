@@ -1,0 +1,9 @@
+/home/tosca/pet-accessories-store/src/main/java/com/petstore/config/DataInitializer.java
+/home/tosca/pet-accessories-store/src/main/java/com/petstore/model/CartItem.java
+/home/tosca/pet-accessories-store/src/main/java/com/petstore/service/ProductService.java
+/home/tosca/pet-accessories-store/src/main/java/com/petstore/PetAccessoriesStoreApplication.java
+/home/tosca/pet-accessories-store/src/main/java/com/petstore/service/SLDemo.java
+/home/tosca/pet-accessories-store/src/main/java/com/petstore/controller/WebController.java
+/home/tosca/pet-accessories-store/src/main/java/com/petstore/controller/ProductController.java
+/home/tosca/pet-accessories-store/src/main/java/com/petstore/repository/ProductRepository.java
+/home/tosca/pet-accessories-store/src/main/java/com/petstore/model/Product.java

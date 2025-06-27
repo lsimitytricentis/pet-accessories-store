@@ -1,0 +1,4 @@
+-------------------------------------------------------------------------------
+Test set: com.petstore.service.ProductServiceTest
+-------------------------------------------------------------------------------
+Tests run: 6, Failures: 0, Errors: 0, Skipped: 5, Time elapsed: 2.07 s - in com.petstore.service.ProductServiceTest
