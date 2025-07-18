@@ -1,0 +1,9 @@
+﻿<InstrumentationEngineConfiguration>
+  <InstrumentationMethod>
+    <Name>SeaLights</Name>
+    <Description>SealLights CLR Profiler</Description>
+    <Module>SL.DotNet.ProfilerLib.Windows_x86.dll</Module>
+    <ClassGuid>{01CA2C22-DC03-4FF5-8350-59E32A3536BA}</ClassGuid>
+    <Priority>80</Priority>
+  </InstrumentationMethod>
+</InstrumentationEngineConfiguration>

@@ -1,0 +1,10 @@
+[Unit]
+Description=%Description%
+
+[Service]
+Type=notify
+ExecStart=%ExecStart%
+WorkingDirectory=%WorkingDirectory%
+
+[Install]
+WantedBy=multi-user.target

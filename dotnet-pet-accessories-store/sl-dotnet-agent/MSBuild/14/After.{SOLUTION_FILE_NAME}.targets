@@ -1,0 +1,80 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+
+<!-- 
+  Copyright (c) 2017 Sealights
+  
+  This file should be renamed to match your solution name. 
+  e.g. if your solution is named SuperProject.sln, this file should be named After.SuperProject.sln.targets
+  
+  It references Sealights.sln.integration.props which contains shared logic to all solutions.
+-->
+<Project ToolsVersion="14.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildThisFileDirectory)Sealights.Common.props" />
+  <Import Project="$(SL_TOOLS_PATH)\MSBuild\14\Sealights.sln.integration.props" />
+  <UsingTask AssemblyFile="$(SL_TOOLS_PATH)\SL.DotNet.MSBuildPlugin.dll" TaskName="SeaLightsIntegrationEndOfBuildTask" />
+  <UsingTask AssemblyFile="$(SL_TOOLS_PATH)\SL.DotNet.MSBuildPlugin.dll" TaskName="SeaLightsIntegrationInitTask" />
+  <Target Name="SealightsBeforeBuild" BeforeTargets="Build">
+    <SeaLightsIntegrationInitTask AppName="$(SL_APP_NAME)" Token="$(SL_TOKEN)" TokenFile="$(SL_TOKEN_FILE)"
+                                  BranchName="$(SL_BRANCH_NAME)" BuildName="$(SL_BUILD_NAME)" Proxy="$(SL_PROXY)"
+                                  ProxyUsername="$(SL_PROXY_USERNAME)" ProxyPassword="$(SL_PROXY_PASSWORD)"
+                                  BuildSessionId="$(SL_BUILD_SESSION_ID)"
+                                  BuildSessionIdFile="$(SL_BUILD_SESSION_ID_FILE)"
+                                  SourceRootDir="$(SL_SOURCE_ROOT_DIR)" MSBuildVersion="$(MSBuildToolsVersion)"
+                                  MSBuildStartupDirectory="$(MSBuildStartupDirectory)"
+                                  SolutionFileName="$(SolutionFileName)" SolutionDir="$(SolutionDir)"
+                                  IgnoreCertificateErrors="$(SL_IGNORE_CERTIFICATE_ERRORS)"
+                                  EnableLogs="$(SL_ENABLE_LOGS)" DebugMode="$(SL_DEBUG_MODE)"
+                                  LogToConsole="$(SL_LOG_TO_CONSOLE)" Platform="$(Platform)"
+                                  ExcludedPlatforms="$(SL_EXCLUDE_PLATFORMS)"
+                                  ExcludedConfigurations="$(SL_EXCLUDE_CONFIGURATIONS)"
+                                  Configuration="$(Configuration)" />
+  </Target>
+  <Target Name="SealightsBeforeRebuild" BeforeTargets="Rebuild">
+    <SeaLightsIntegrationInitTask AppName="$(SL_APP_NAME)" Token="$(SL_TOKEN)" TokenFile="$(SL_TOKEN_FILE)"
+                                  BranchName="$(SL_BRANCH_NAME)" BuildName="$(SL_BUILD_NAME)" Proxy="$(SL_PROXY)"
+                                  ProxyUsername="$(SL_PROXY_USERNAME)" ProxyPassword="$(SL_PROXY_PASSWORD)"
+                                  BuildSessionId="$(SL_BUILD_SESSION_ID)"
+                                  BuildSessionIdFile="$(SL_BUILD_SESSION_ID_FILE)"
+                                  SourceRootDir="$(SL_SOURCE_ROOT_DIR)" MSBuildVersion="$(MSBuildToolsVersion)"
+                                  MSBuildStartupDirectory="$(MSBuildStartupDirectory)"
+                                  SolutionFileName="$(SolutionFileName)" SolutionDir="$(SolutionDir)"
+                                  IgnoreCertificateErrors="$(SL_IGNORE_CERTIFICATE_ERRORS)"
+                                  EnableLogs="$(SL_ENABLE_LOGS)" DebugMode="$(SL_DEBUG_MODE)"
+                                  LogToConsole="$(SL_LOG_TO_CONSOLE)" Platform="$(Platform)"
+                                  ExcludedPlatforms="$(SL_EXCLUDE_PLATFORMS)"
+                                  ExcludedConfigurations="$(SL_EXCLUDE_CONFIGURATIONS)"
+                                  Configuration="$(Configuration)" />
+  </Target>
+  <Target Name="SealightsAfterBuild" AfterTargets="Build">
+    <SeaLightsIntegrationEndOfBuildTask AppName="$(SL_APP_NAME)" Token="$(SL_TOKEN)" TokenFile="$(SL_TOKEN_FILE)"
+                                        BranchName="$(SL_BRANCH_NAME)" BuildName="$(SL_BUILD_NAME)" Proxy="$(SL_PROXY)"
+                                        ProxyUsername="$(SL_PROXY_USERNAME)" ProxyPassword="$(SL_PROXY_PASSWORD)"
+                                        BuildSessionId="$(SL_BUILD_SESSION_ID)"
+                                        BuildSessionIdFile="$(SL_BUILD_SESSION_ID_FILE)"
+                                        MSBuildVersion="$(MSBuildToolsVersion)"
+                                        MSBuildStartupDirectory="$(MSBuildStartupDirectory)"
+                                        SolutionFileName="$(SolutionFileName)" SolutionDir="$(SolutionDir)"
+                                        IgnoreCertificateErrors="$(SL_IGNORE_CERTIFICATE_ERRORS)"
+                                        EnableLogs="$(SL_ENABLE_LOGS)" DebugMode="$(SL_DEBUG_MODE)"
+                                        LogToConsole="$(SL_LOG_TO_CONSOLE)" Platform="$(Platform)"
+                                        ExcludedPlatforms="$(SL_EXCLUDE_PLATFORMS)"
+                                        ExcludedConfigurations="$(SL_EXCLUDE_CONFIGURATIONS)"
+                                        Configuration="$(Configuration)" />
+  </Target>
+  <Target Name="SealightsAfterRebuild" AfterTargets="Rebuild">
+    <SeaLightsIntegrationEndOfBuildTask AppName="$(SL_APP_NAME)" Token="$(SL_TOKEN)" TokenFile="$(SL_TOKEN_FILE)"
+                                        BranchName="$(SL_BRANCH_NAME)" BuildName="$(SL_BUILD_NAME)" Proxy="$(SL_PROXY)"
+                                        ProxyUsername="$(SL_PROXY_USERNAME)" ProxyPassword="$(SL_PROXY_PASSWORD)"
+                                        BuildSessionId="$(SL_BUILD_SESSION_ID)"
+                                        BuildSessionIdFile="$(SL_BUILD_SESSION_ID_FILE)"
+                                        MSBuildVersion="$(MSBuildToolsVersion)"
+                                        MSBuildStartupDirectory="$(MSBuildStartupDirectory)"
+                                        SolutionFileName="$(SolutionFileName)" SolutionDir="$(SolutionDir)"
+                                        IgnoreCertificateErrors="$(SL_IGNORE_CERTIFICATE_ERRORS)"
+                                        EnableLogs="$(SL_ENABLE_LOGS)" DebugMode="$(SL_DEBUG_MODE)"
+                                        LogToConsole="$(SL_LOG_TO_CONSOLE)" Platform="$(Platform)"
+                                        ExcludedPlatforms="$(SL_EXCLUDE_PLATFORMS)"
+                                        ExcludedConfigurations="$(SL_EXCLUDE_CONFIGURATIONS)"
+                                        Configuration="$(Configuration)" />
+  </Target>
+</Project>

@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<!-- 
+  Copyright (c) 2017 Sealights
+  
+  This file Adds the SeaLightsIntegrationTask task to the build pipeline, after the CopyFilesToOutputDirectory target
+-->
+<Project ToolsVersion="14.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <!-- We required PDBs, also for RELEASE builds -->
+    <ExcludeGeneratedDebugSymbol>false</ExcludeGeneratedDebugSymbol>
+  </PropertyGroup>
+  <Import Project="$(SolutionDir)Sealights.Common.props" />
+  <Import Project="$(MSBuildThisFileDirectory)Directory.Build.targets" />
+  <UsingTask AssemblyFile="$(SL_TOOLS_PATH)\SL.DotNet.MSBuildPlugin.dll" TaskName="SeaLightsIntegrationTask" />
+
+  <Target Name="SeaLightsIntegrationTask" AfterTargets="CopyFilesToOutputDirectory">
+    <SeaLightsIntegrationTask AppName="$(SL_APP_NAME)" Token="$(SL_TOKEN)" TokenFile="$(SL_TOKEN_FILE)"
+                              BranchName="$(SL_BRANCH_NAME)" BuildName="$(SL_BUILD_NAME)" Proxy="$(SL_PROXY)"
+                              ProxyUsername="$(SL_PROXY_USERNAME)" ProxyPassword="$(SL_PROXY_PASSWORD)"
+                              BuildSessionId="$(SL_BUILD_SESSION_ID)" BuildSessionIdFile="$(SL_BUILD_SESSION_ID_FILE)"
+                              ExcludedProjects="$(SL_EXCLUDE_PROJECTS)" IncludeNamespace="$(SL_INCLUDE_NAMESPACE)"
+                              ExcludeNamespace="$(SL_EXCLUDE_NAMESPACE)"
+                              AdditionalDebugSymbolsSearhDirectories="$(SL_ADDITIONAL_DEBUG_SYMBOLS_SEARCH_DIRECTORIES)"
+                              SourceRootDir="$(SL_SOURCE_ROOT_DIR)" MSBuildVersion="$(MSBuildToolsVersion)"
+                              MSBuildStartupDirectory="$(MSBuildStartupDirectory)" TargetDir="$(TargetDir)"
+                              AssemblyName="$(AssemblyName)" ProjectGuid="$(ProjectGuid)" ProjectName="$(ProjectName)"
+                              TargetFileName="$(TargetFileName)" SolutionFileName="$(SolutionFileName)"
+                              SolutionDir="$(SolutionDir)" Platform="$(Platform)"
+                              MSBuildProjectDirectory="$(MSBuildProjectDirectory)"
+                              IgnoreGeneratedCode="$(SL_IGNORE_GENERATED_CODE)"
+                              IgnoreCertificateErrors="$(SL_IGNORE_CERTIFICATE_ERRORS)" EnableLogs="$(SL_ENABLE_LOGS)"
+                              DebugMode="$(SL_DEBUG_MODE)" LogToConsole="$(SL_LOG_TO_CONSOLE)" Skip="$(SL_SKIP)"
+                              AutoDetectTestProjects="$(SL_AUTO_DETECT_TEST_PROJECTS)"
+                              ProjectTypeGuids="$(ProjectTypeGuids)" References="@(Reference)"
+                              Configuration="$(Configuration)" ExcludedPlatforms="$(SL_EXCLUDE_PLATFORMS)"
+                              ExcludedConfigurations="$(SL_EXCLUDE_CONFIGURATIONS)" ScmType="$(SL_SCM_TYPE)"
+                              ScmRepoUrl="$(SL_SCM_REPOSITORY_URL)" ScmProvider="$(SL_SCM_PROVIDER)"
+                              HashingAlgorithm="$(SL_HASHING_ALGORITHM)" CommitDataFile="$(SL_COMMIT_DATA_FILE)"
+                              TfvcBuildSourceBranch="$(SL_TFVC_BUILD_SOURCE_BRANCH)" />
+  </Target>
+</Project>

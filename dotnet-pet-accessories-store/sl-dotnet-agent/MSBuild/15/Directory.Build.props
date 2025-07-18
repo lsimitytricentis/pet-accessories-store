@@ -1,0 +1,170 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+
+<!-- 
+  Copyright (c) 2017 Sealights
+  
+  This file contains shared logic for all .sln files:
+  SL_TOKEN
+    * If not specified, and a sealights.token exists in the current directory, it will be used
+  SL_BUILD_SESSION_ID_FILE
+    * By default, this will point to a file named "buildSession"
+    * Will be converted to full path
+    * If SL_BUILD_SESSION_ID was not specified, and this file exists, it will be read
+  SL_BUILD_SESSION_ID
+    * If not specified, a new GUID will be generated
+  SL_BUILD_NAME
+    * If not specified, the current time will be used
+  SL_APP_NAME
+    * If not specified, the SLN file name will be used, without extensions
+  SL_BRANCH_NAME
+    * By default, origin/master
+  SL_ENABLE_LOGS
+    * 0 -> false
+    * 1 -> true
+    * By default, turned off
+  SL_DEBUG_MODE
+    * 0 -> false
+    * 1 -> true
+    * By default, turned off
+  SL_LOG_TO_CONSOLE
+    * 0 -> false
+    * 1 -> true
+    * By default, turned off
+  SL_AUTO_DETECT_TEST_PROJECTS
+    * On by default
+  SL_IGNORE_GENERATED_CODE
+    * Off by default
+  SL_IGNORE_CERTIFICATE_ERRORS 
+    * Off by default
+  SL_EXCLUDE_PROJECTS
+    * Empty by default
+  SL_EXCLUDE_PLATFORMS
+    * Empty by default
+  SL_EXCLUDE_CONFIGURATIONS
+    * Empty by default
+  SL_HASHING_ALGORITHM
+    * Empty by default
+  SL_SCM_PROVIDER
+    * Empty by default
+  SL_SCM_TYPE
+    * Empty by default
+  SL_SCM_REPOSITORY_URL
+    * Empty by default
+  SL_COMMIT_DATA_FILE
+    * Empty by default
+  SL_TFVC_BUILD_SOURCE_BRANCH
+    * Empty by default    
+    
+  Injects Sealights.project.integration.targets to all project files
+-->
+<Project ToolsVersion="14.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+
+  <PropertyGroup Condition="'$(SL_TOKEN)' == '' And $([System.IO.File]::Exists('sealights.token'))">
+    <SL_TOKEN>$([System.IO.File]::ReadAllText('sealights.token'))</SL_TOKEN>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(SL_BUILD_SESSION_ID_FILE)' == ''">
+    <SL_BUILD_SESSION_ID_FILE>buildSession</SL_BUILD_SESSION_ID_FILE>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(SL_BUILD_SESSION_ID_FILE)' != ''">
+    <SL_BUILD_SESSION_ID_FILE>$([System.IO.Path]::GetFullPath($(SL_BUILD_SESSION_ID_FILE)))</SL_BUILD_SESSION_ID_FILE>
+  </PropertyGroup>
+
+  <PropertyGroup
+    Condition="'$(SL_BUILD_SESSION_ID_FILE)' != '' And '$(SL_BUILD_SESSION_ID)' == '' And $([System.IO.File]::Exists($(SL_BUILD_SESSION_ID_FILE)))">
+    <SL_BUILD_SESSION_ID>$([System.IO.File]::ReadAllText($(SL_BUILD_SESSION_ID_FILE)))</SL_BUILD_SESSION_ID>
+  </PropertyGroup>
+
+  <!-- Build Session ID is by default a new GUID -->
+  <PropertyGroup Condition="'$(SL_BUILD_SESSION_ID)' == ''">
+    <SL_BUILD_SESSION_ID>$([System.Guid]::NewGuid())</SL_BUILD_SESSION_ID>
+  </PropertyGroup>
+
+  <!-- Build Name is by default a monotonically increasing number -->
+  <PropertyGroup Condition="'$(SL_BUILD_NAME)' == ''">
+    <SL_BUILD_NAME>$([System.DateTime]::UtcNow.Ticks.ToString())</SL_BUILD_NAME>
+  </PropertyGroup>
+
+  <!-- App name is by default taken from the solution name -->
+  <PropertyGroup Condition="'$(SL_APP_NAME)' == ''">
+    <SL_APP_NAME>$([System.IO.Path]::GetFileNameWithoutExtension($(MSBuildProjectName)))</SL_APP_NAME>
+  </PropertyGroup>
+
+  <!-- Branch name is by default origin/master -->
+  <PropertyGroup Condition="'$(SL_BRANCH_NAME)' == ''">
+    <SL_BRANCH_NAME>origin/master</SL_BRANCH_NAME>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(SL_ENABLE_LOGS)' == '0'">
+    <SL_ENABLE_LOGS>false</SL_ENABLE_LOGS>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(SL_ENABLE_LOGS)' == '1'">
+    <SL_ENABLE_LOGS>true</SL_ENABLE_LOGS>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(SL_DEBUG_MODE)' == '0'">
+    <SL_DEBUG_MODE>false</SL_DEBUG_MODE>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(SL_DEBUG_MODE)' == '1'">
+    <SL_DEBUG_MODE>true</SL_DEBUG_MODE>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(SL_LOG_TO_CONSOLE)' == '0'">
+    <SL_LOG_TO_CONSOLE>false</SL_LOG_TO_CONSOLE>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(SL_LOG_TO_CONSOLE)' == '1'">
+    <SL_LOG_TO_CONSOLE>true</SL_LOG_TO_CONSOLE>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(SL_AUTO_DETECT_TEST_PROJECTS)' == ''">
+    <SL_AUTO_DETECT_TEST_PROJECTS>true</SL_AUTO_DETECT_TEST_PROJECTS>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(SL_IGNORE_GENERATED_CODE)' == ''">
+    <SL_IGNORE_GENERATED_CODE>false</SL_IGNORE_GENERATED_CODE>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(SL_IGNORE_CERTIFICATE_ERRORS)' == ''">
+    <SL_IGNORE_CERTIFICATE_ERRORS>false</SL_IGNORE_CERTIFICATE_ERRORS>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(SL_EXCLUDE_PROJECTS)' == ''">
+    <SL_EXCLUDE_PROJECTS></SL_EXCLUDE_PROJECTS>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(SL_EXCLUDE_PLATFORMS)' == ''">
+    <SL_EXCLUDE_PLATFORMS></SL_EXCLUDE_PLATFORMS>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(SL_EXCLUDE_CONFIGURATIONS)' == ''">
+    <SL_EXCLUDE_CONFIGURATIONS></SL_EXCLUDE_CONFIGURATIONS>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(SL_HASHING_ALGORITHM)' == ''">
+    <SL_HASHING_ALGORITHM></SL_HASHING_ALGORITHM>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(SL_SCM_TYPE)' == ''">
+    <SL_SCM_TYPE></SL_SCM_TYPE>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(SL_SCM_PROVIDER)' == ''">
+    <SL_SCM_PROVIDER></SL_SCM_PROVIDER>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(SL_SCM_REPOSITORY_URL)' == ''">
+    <SL_SCM_REPOSITORY_URL></SL_SCM_REPOSITORY_URL>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(SL_COMMIT_DATA_FILE)' == ''">
+    <SL_COMMIT_DATA_FILE></SL_COMMIT_DATA_FILE>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(SL_TFVC_BUILD_SOURCE_BRANCH)' == ''">
+    <SL_TFVC_BUILD_SOURCE_BRANCH></SL_TFVC_BUILD_SOURCE_BRANCH>
+  </PropertyGroup>
+</Project>

@@ -47,6 +47,9 @@ public class OrderService {
     
     @Transactional
     public Order createDraftOrder(OrderRequest orderRequest) {
+        int i =0;
+        i++;
+
         // Find or create user
         User user = userService.findOrCreateUser(
             orderRequest.getEmail(),

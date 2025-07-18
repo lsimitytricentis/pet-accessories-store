@@ -1,0 +1,9 @@
+﻿<InstrumentationEngineConfiguration>
+  <InstrumentationMethod>
+    <Name>SeaLights</Name>
+    <Description>SealLights CLR Profiler</Description>
+    <Module>libSL.DotNet.ProfilerLib.Linux.so</Module>
+    <ClassGuid>{3B1DAA64-89D4-4999-ABF4-6A979B650B7D}</ClassGuid>
+    <Priority>80</Priority>
+  </InstrumentationMethod>
+</InstrumentationEngineConfiguration>

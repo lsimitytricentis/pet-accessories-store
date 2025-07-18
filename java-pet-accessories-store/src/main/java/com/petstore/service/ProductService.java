@@ -17,13 +17,14 @@ public class ProductService {
     
     public List<Product> getAllProducts() {
         //A new piece of functionality
+        int i = 0;
+        i++;
+
         return productRepository.findAll();
     }
     
     public Optional<Product> getProductById(Long id) {
-        int i = 0;
-        i++;
-        System.out.println(i);
+
         return productRepository.findById(id);
     }
     
