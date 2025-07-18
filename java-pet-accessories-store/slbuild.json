@@ -1,0 +1,19 @@
+{
+  "executionType": "scanonly",
+  "tokenFile": "sltoken.txt",
+  "createBuildSessionId": true,
+  "appName": "pet-accessories-store",
+  "branchName": "main",
+  "buildName": "SL_Timestamp",
+  "packagesIncluded": "*com.petstore.*",
+  "packagesExcluded": "",
+  "filesIncluded": "*.class",
+  "filesExcluded": "*test-classes*",
+  "recursive": true,
+  "includeResources": true,
+  "logEnabled": false,
+  "logDestination": "console",
+  "logLevel": "off",
+  "logFolder": "/tmp",
+  "sealightsJvmParams": {}
+}

@@ -1,0 +1,13 @@
+{
+  "executionType": "testsonly",
+  "tokenFile": "sltoken.txt",
+  "createBuildSessionId": false,
+  "testStage": "Unit",
+  "buildSessionIdFile": "buildSessionId.txt",
+  "runFunctionalTests": true,
+  "logEnabled": false,
+  "logDestination": "console",
+  "logLevel": "warn",
+  "logFolder": "/tmp",
+  "sealightsJvmParams": {}
+}
